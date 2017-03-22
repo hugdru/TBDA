@@ -16,8 +16,6 @@ SELECT SUM(s.TOTAL_RESPOSTAS)
 FROM ZSEMESTRE s
 WHERE s.ANO_LECTIVO = '2008/2009' AND s.SEMESTRE = '1S';
 
-
-
 -- In case there is no trigger for TOTAL_RESPOSTAS
 -- x
 SELECT count(*)

@@ -16,7 +16,6 @@ SELECT s.TOTAL_RESPOSTAS
 FROM ZSEMESTRE s
 WHERE s.SEMESTRE_ID = 21;
 
-
 -- In case there is no trigger for TOTAL_RESPOSTAS
 -- x
 SELECT count(*)
