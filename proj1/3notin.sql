@@ -11,7 +11,7 @@ WHERE disciplina_id NOT IN(
 	FROM yrespostas)
 
 SELECT nome
-FROM ydisciplina
+FROM zdisciplina
 WHERE disciplina_id NOT IN(
 	SELECT disciplina_id
-	FROM yrespostas)
+	FROM zrespostas)
