@@ -1,4 +1,4 @@
--- tipo objeto item
+----------------------------------------------- ITEM
 CREATE TYPE item_t AS OBJECT(
 	id bigint,
 	published_date date,
@@ -6,24 +6,32 @@ CREATE TYPE item_t AS OBJECT(
 	text nvarchar(max),
 );
 
--- tipo tabela item para ser usado em section
-CREATE TYPE item_tab AS TABLE OF item_t;
-
--- tabela de itens, onde se faz inserção de dados
 CREATE TABLE item OF item_t;
 
--- tipo objeto section
+CREATE TYPE item_refs AS OBJECT(
+	item REF item_t
+);
+
+CREATE TYPE item_tab_refs AS TABLE OF item_refs;
+
+----------------------------------------------- RELATED_ITEM
+CREATE TYPE related_item_t AS OBJECT(
+	item REF item_t,
+	related_itens item_tab_refs
+);
+
+----------------------------------------------- SECTION
 CREATE TYPE section_t AS OBJECT(
 	id bigint,
 	name nvarchar(200),
-	itens item_tab
+	itens item_tab_refs
 );
 
--- tabela de itens, onde se faz inserção de dados
 CREATE TABLE section OF section_t
 	NESTED TABLE itens STORE AS itens_nt;
 
--- 
+
+----------------------------------------------- USER
 CREATE TYPE user_t AS OBJECT(
 	id bigint,
 	username nvarchar(100),
@@ -35,6 +43,8 @@ CREATE TYPE user_t AS OBJECT(
 
 CREATE TYPE user_tab AS TABLE OF user_t;
 
+
+----------------------------------------------- COUNTRY
 CREATE TYPE country_t AS OBJECT(
 	id bigint,
 	name nvarchar(100),
