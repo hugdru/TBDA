@@ -94,7 +94,7 @@ CREATE TYPE JOURNALIST_ROLE_T AS OBJECT (
 
 CREATE TYPE JOURNALIST_ROLE_TAB_T AS TABLE OF JOURNALIST_ROLE_T;
 
-ALTER TYPE ITEM_T ADD ATTRIBUTE (journalist_role_list JOURNALIST_ROLE_TAB_T ) CASCADE;
+ALTER TYPE ITEM_T ADD ATTRIBUTE (journalist_role_set JOURNALIST_ROLE_TAB_T ) CASCADE;
 
 --------------------------------------------------------- CLIENT
 CREATE TYPE CLIENT_T AS OBJECT (
@@ -130,7 +130,7 @@ CREATE TABLE item_table OF ITEM_T
   NESTED TABLE related_items STORE AS item_related_items_nt
   NESTED TABLE images STORE AS item_images_nt
   NESTED TABLE videos STORE AS item_videos_nt
-  NESTED TABLE journalist_role_list STORE AS item_journalist_role_list_nt;
+  NESTED TABLE journalist_role_set STORE AS item_journalist_role_set_nt;
 
 CREATE TABLE section_table OF SECTION_T;
 
@@ -145,6 +145,8 @@ CREATE TABLE category_table OF CATEGORY_T;
 CREATE TABLE place_table OF PLACE_T;
 
 CREATE TABLE country_table OF COUNTRY_T;
+
+CREATE TABLE role_table OF ROLE_T;
 
 CREATE TABLE client_table OF CLIENT_T
   NESTED TABLE downloaded_items STORE AS client_downloaded_items_nt;
