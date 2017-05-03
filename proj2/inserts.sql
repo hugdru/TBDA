@@ -16,9 +16,14 @@ INSERT INTO category_table VALUES (3, 'Comedic journalism');
 INSERT INTO category_table VALUES (4, 'Community journalism');
 INSERT INTO category_table VALUES (5, 'Computational journalism');
 INSERT INTO category_table VALUES (6, 'Enterprise journalism');
---INSERT INTO category_table VALUES (7, 'Mobile journalism');
---INSERT INTO category_table VALUES (8, 'Scientific journalism');
---INSERT INTO category_table VALUES (9, 'Data journalism');
+
+-- ROLE
+INSERT INTO role_table VALUES (1, 'Main Reporter');
+INSERT INTO role_table VALUES (2, 'Editor');
+INSERT INTO role_table VALUES (3, 'Columnist');
+INSERT INTO role_table VALUES (4, 'Blogger');
+INSERT INTO role_table VALUES (5, 'Photographer');
+INSERT INTO role_table VALUES (6, 'Collaborator,');
 
 -- COUNTRY
 INSERT INTO country_table VALUES (1, 'Portugal');
@@ -38,7 +43,7 @@ INSERT INTO journalist_table VALUES (3, 'Hugo Fernandes Almeida', '5820644018537
 INSERT INTO journalist_table VALUES (4, 'Guilherme Ribeiro Dias', '401358289582293', (SELECT REF(p) FROM category_table p WHERE id=2), (SELECT REF(p) FROM country_table p WHERE id=6));
 INSERT INTO journalist_table VALUES (5, 'Filipe Martins Rodrigues', '382387596342312', (SELECT REF(p) FROM category_table p WHERE id=4), (SELECT REF(p) FROM country_table p WHERE id=1));
 INSERT INTO journalist_table VALUES (6, 'Igor Sousa Cunha', '295062196039212', (SELECT REF(p) FROM category_table p WHERE id=1), (SELECT REF(p) FROM country_table p WHERE id=4));
-INSERT INTO journalist_table VALUES (7, 'Margarida Pinto Barbosa', '045872348942372', (SELECT REF(p) FROM category_table p WHERE id=3), (SELECT REF(p) FROM country_table p WHERE id=5));
+INSERT INTO journalist_table VALUES (7, 'Margarida PINTO Barbosa', '045872348942372', (SELECT REF(p) FROM category_table p WHERE id=3), (SELECT REF(p) FROM country_table p WHERE id=5));
 INSERT INTO journalist_table VALUES (8, 'Rodrigo Araújo Gonçalves', '560480293484723', (SELECT REF(p) FROM category_table p WHERE id=3), (SELECT REF(p) FROM country_table p WHERE id=9));
 INSERT INTO journalist_table VALUES (9, 'Daniela Lima Costa', '593295810321850', (SELECT REF(p) FROM category_table p WHERE id=5), (SELECT REF(p) FROM country_table p WHERE id=2));
 
@@ -82,14 +87,14 @@ INSERT INTO video_table VALUES (9, '2017-01-03 21:05:00', 'Enya singing', 239, h
 -- ITEM
 INSERT INTO item_table VALUES (
 	1,
-	'2017-05-03 23:55:00',
+	'2017-05-01 23:55:00',
 	'Trump Says the Government Needs a "Good Shutdown"',
 	'President Trump said on Tuesday that the United States needed "a good shutdown" this fall to force a partisan confrontation over federal spending, and suggested that he might move to reverse longstanding Senate rules that effectively require a supermajority to approve most major pieces of legislation.',
 	ITEM_REF_TAB_T(),
 	(SELECT REF(p) FROM section_table p WHERE id=2),
-	IMAGE_REF_TAB_T((select ref(d) from image_table d where d.id=4), (select ref(d) from image_table d where d.id=6)),
-	VIDEO_REF_TAB_T((select ref(d) from video_table d where d.id=2)),
-	JOURNALIST_ROLE_TAB_T(JOURNALIST_ROLE_T((select ref(d) from journalist_table d where d.id=3), ROLE_T(1, 'Main Reporter')))
+	IMAGE_REF_TAB_T((SELECT REF(d) FROM image_table d WHERE d.id=4), (SELECT REF(d) FROM image_table d WHERE d.id=6)),
+	VIDEO_REF_TAB_T((SELECT REF(d) FROM video_table d WHERE d.id=2)),
+	JOURNALIST_ROLE_TAB_T(JOURNALIST_ROLE_T((SELECT REF(d) FROM journalist_table d WHERE d.id=3), (SELECT REF(d) FROM role_table d WHERE d.id=1)))
 );
 INSERT INTO item_table VALUES (
 	2,
@@ -98,9 +103,9 @@ INSERT INTO item_table VALUES (
 	'Poll suggests 65% of those who backed hard-left candidate will not vote for centrist fighting Marine Le Pen for French presidency',
 	ITEM_REF_TAB_T(),
 	(SELECT REF(p) FROM section_table p WHERE id=1),
-	IMAGE_REF_TAB_T((select ref(d) from image_table d where d.id=7)),
-	VIDEO_REF_TAB_T((select ref(d) from video_table d where d.id=4), (select ref(d) from video_table d where d.id=6)),
-	JOURNALIST_ROLE_TAB_T(JOURNALIST_ROLE_T((select ref(d) from journalist_table d where d.id=6), ROLE_T(2, 'Editor')), JOURNALIST_ROLE_T((select ref(d) from journalist_table d where d.id=7), ROLE_T(3, 'Columnist')))
+	IMAGE_REF_TAB_T((SELECT REF(d) FROM image_table d WHERE d.id=7)),
+	VIDEO_REF_TAB_T((SELECT REF(d) FROM video_table d WHERE d.id=3), (SELECT REF(d) FROM video_table d WHERE d.id=7)),
+	JOURNALIST_ROLE_TAB_T(JOURNALIST_ROLE_T((SELECT REF(d) FROM journalist_table d WHERE d.id=6), (SELECT REF(d) FROM role_table d WHERE d.id=3)), JOURNALIST_ROLE_T((SELECT REF(d) FROM journalist_table d WHERE d.id=7), (SELECT REF(d) FROM role_table d WHERE d.id=5)))
 );
 INSERT INTO item_table VALUES (
 	3,
@@ -109,9 +114,9 @@ INSERT INTO item_table VALUES (
 	'German chancellor raises reports of torture and persecution of gay men during joint press conference with Russian president',
 	ITEM_REF_TAB_T(),
 	(SELECT REF(p) FROM section_table p WHERE id=4),
-	IMAGE_REF_TAB_T((select ref(d) from image_table d where d.id=1), (select ref(d) from image_table d where d.id=5)),
-	VIDEO_REF_TAB_T((select ref(d) from video_table d where d.id=9), (select ref(d) from video_table d where d.id=4)),
-	JOURNALIST_ROLE_TAB_T(JOURNALIST_ROLE_T((select ref(d) from journalist_table d where d.id=6), ROLE_T(2, 'Editor')))
+	IMAGE_REF_TAB_T((SELECT REF(d) FROM image_table d WHERE d.id=1), (SELECT REF(d) FROM image_table d WHERE d.id=5)),
+	VIDEO_REF_TAB_T((SELECT REF(d) FROM video_table d WHERE d.id=9), (SELECT REF(d) FROM video_table d WHERE d.id=1)),
+	JOURNALIST_ROLE_TAB_T(JOURNALIST_ROLE_T((SELECT REF(d) FROM journalist_table d WHERE d.id=2), (SELECT REF(d) FROM role_table d WHERE d.id=5)))
 );
 INSERT INTO item_table VALUES (
 	4,
@@ -119,10 +124,10 @@ INSERT INTO item_table VALUES (
 	'"Exercise pill" could deliver benefits of fitness in tablet form',
 	'Drug could transform lives of those who are unable to exercise because of obesity or serious physical disability, mouse study suggests',
 	ITEM_REF_TAB_T(),
-	(SELECT REF(p) FROM section_table p WHERE id=5),
+	(SELECT REF(p) FROM section_table p WHERE id=7),
 	IMAGE_REF_TAB_T(),
-	VIDEO_REF_TAB_T(),
-	JOURNALIST_ROLE_TAB_T()
+	VIDEO_REF_TAB_T((SELECT REF(d) FROM video_table d WHERE d.id=6)),
+	JOURNALIST_ROLE_TAB_T(JOURNALIST_ROLE_T((SELECT REF(d) FROM journalist_table d WHERE d.id=7), (SELECT REF(d) FROM role_table d WHERE d.id=1)))
 );
 INSERT INTO item_table VALUES (
 	5,
@@ -131,9 +136,9 @@ INSERT INTO item_table VALUES (
 	'Daniela Greene moved to Syria to be with her jihadi groom, a former German rapper, before realising she was involved "way over her head"',
 	ITEM_REF_TAB_T(),
 	(SELECT REF(p) FROM section_table p WHERE id=6),
-	IMAGE_REF_TAB_T(),
-	VIDEO_REF_TAB_T(),
-	JOURNALIST_ROLE_TAB_T()
+	IMAGE_REF_TAB_T((SELECT REF(d) FROM image_table d WHERE d.id=2)),
+	VIDEO_REF_TAB_T((SELECT REF(d) FROM video_table d WHERE d.id=5)),
+	JOURNALIST_ROLE_TAB_T(JOURNALIST_ROLE_T((SELECT REF(d) FROM journalist_table d WHERE d.id=8), (SELECT REF(d) FROM role_table d WHERE d.id=2)))
 );
 INSERT INTO item_table VALUES (
 	6,
@@ -144,29 +149,29 @@ INSERT INTO item_table VALUES (
 	(SELECT REF(p) FROM section_table p WHERE id=7),
 	IMAGE_REF_TAB_T(),
 	VIDEO_REF_TAB_T(),
-	JOURNALIST_ROLE_TAB_T()
+	JOURNALIST_ROLE_TAB_T(JOURNALIST_ROLE_T((SELECT REF(d) FROM journalist_table d WHERE d.id=8), (SELECT REF(d) FROM role_table d WHERE d.id=2)), JOURNALIST_ROLE_T((SELECT REF(d) FROM journalist_table d WHERE d.id=5), (SELECT REF(d) FROM role_table d WHERE d.id=6)))
 );
 INSERT INTO item_table VALUES (
 	7,
 	'2017-01-28 12:25:00',
-	'Jaber Abdullah: how I set up a refugee football team in Barnsley',
+	'Jaber Abdullah: how I set up a REFugee football team in Barnsley',
 	'The Sudanese asylum seeker has created a 50-strong squad to help men stuck in immigration limbo in a town that has faced anti-immigration marches',
 	ITEM_REF_TAB_T(),
 	(SELECT REF(p) FROM section_table p WHERE id=9),
-	IMAGE_REF_TAB_T(),
-	VIDEO_REF_TAB_T(),
-	JOURNALIST_ROLE_TAB_T()
+	IMAGE_REF_TAB_T((SELECT REF(d) FROM image_table d WHERE d.id=8)),
+	VIDEO_REF_TAB_T((SELECT REF(d) FROM video_table d WHERE d.id=2)),
+	JOURNALIST_ROLE_TAB_T(JOURNALIST_ROLE_T((SELECT REF(d) FROM journalist_table d WHERE d.id=2), (SELECT REF(d) FROM role_table d WHERE d.id=2)))
 );
 INSERT INTO item_table VALUES (
 	8,
 	'2017-01-19 19:45:00',
-	'Erdoğan rejoins Turkey’s ruling party in wake of referendum on new powers',
+	'Erdoğan rejoins Turkey’s ruling party in wake of REFerendum on new powers',
 	'President returns to Justice and Development party a fortnight after voters narrowly approved constitutional amendments',
 	ITEM_REF_TAB_T(),
-	(SELECT REF(p) FROM section_table p WHERE id=8),
-	IMAGE_REF_TAB_T(),
-	VIDEO_REF_TAB_T(),
-	JOURNALIST_ROLE_TAB_T()
+	(SELECT REF(p) FROM section_table p WHERE id=5),
+	IMAGE_REF_TAB_T((SELECT REF(d) FROM image_table d WHERE d.id=3)),
+	VIDEO_REF_TAB_T((SELECT REF(d) FROM video_table d WHERE d.id=8), (SELECT REF(d) FROM video_table d WHERE d.id=4)),
+	JOURNALIST_ROLE_TAB_T(JOURNALIST_ROLE_T((SELECT REF(d) FROM journalist_table d WHERE d.id=3), (SELECT REF(d) FROM role_table d WHERE d.id=1)), JOURNALIST_ROLE_T((SELECT REF(d) FROM journalist_table d WHERE d.id=8), (SELECT REF(d) FROM role_table d WHERE d.id=3)))
 );
 INSERT INTO item_table VALUES (
 	9,
@@ -175,15 +180,160 @@ INSERT INTO item_table VALUES (
 	'Indonesia says deceased man was born in December 1870, although his age was never verified',
 	ITEM_REF_TAB_T(),
 	(SELECT REF(p) FROM section_table p WHERE id=3),
-	IMAGE_REF_TAB_T(),
+	IMAGE_REF_TAB_T((SELECT REF(d) FROM image_table d WHERE d.id=9), (SELECT REF(d) FROM image_table d WHERE d.id=7)),
 	VIDEO_REF_TAB_T(),
-	JOURNALIST_ROLE_TAB_T()
+	JOURNALIST_ROLE_TAB_T(JOURNALIST_ROLE_T((SELECT REF(d) FROM journalist_table d WHERE d.id=5), (SELECT REF(d) FROM role_table d WHERE d.id=4)))
 );
 
 
-insert into table(select s.images from item_table s where s.id=1) 
-(select ref(d) from image_table d where d.id=6);
+-- INSERTS NAS TABLEAS DE ITEMS RELACIONADOS EM CADA ITEM
+-- ITEM 1
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=1) 
+(SELECT REF(d) FROM item_table d WHERE d.id=6);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=1) 
+(SELECT REF(d) FROM item_table d WHERE d.id=2);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=1) 
+(SELECT REF(d) FROM item_table d WHERE d.id=7);
+-- ITEM 2
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=2) 
+(SELECT REF(d) FROM item_table d WHERE d.id=6);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=2) 
+(SELECT REF(d) FROM item_table d WHERE d.id=2);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=2) 
+(SELECT REF(d) FROM item_table d WHERE d.id=8);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=2) 
+(SELECT REF(d) FROM item_table d WHERE d.id=1);
+-- ITEM 3
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=3) 
+(SELECT REF(d) FROM item_table d WHERE d.id=2);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=3) 
+(SELECT REF(d) FROM item_table d WHERE d.id=7);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=3) 
+(SELECT REF(d) FROM item_table d WHERE d.id=4);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=3) 
+(SELECT REF(d) FROM item_table d WHERE d.id=5);
+-- ITEM 4
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=4) 
+(SELECT REF(d) FROM item_table d WHERE d.id=5);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=4) 
+(SELECT REF(d) FROM item_table d WHERE d.id=9);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=4) 
+(SELECT REF(d) FROM item_table d WHERE d.id=1);
+-- ITEM 5
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=5) 
+(SELECT REF(d) FROM item_table d WHERE d.id=3);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=5) 
+(SELECT REF(d) FROM item_table d WHERE d.id=8);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=5) 
+(SELECT REF(d) FROM item_table d WHERE d.id=7);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=5) 
+(SELECT REF(d) FROM item_table d WHERE d.id=1);
+-- ITEM 6
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=6) 
+(SELECT REF(d) FROM item_table d WHERE d.id=1);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=6) 
+(SELECT REF(d) FROM item_table d WHERE d.id=4);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=6) 
+(SELECT REF(d) FROM item_table d WHERE d.id=2);
+-- ITEM 7
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=7) 
+(SELECT REF(d) FROM item_table d WHERE d.id=9);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=7) 
+(SELECT REF(d) FROM item_table d WHERE d.id=2);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=7) 
+(SELECT REF(d) FROM item_table d WHERE d.id=6);
+-- ITEM 8
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=8) 
+(SELECT REF(d) FROM item_table d WHERE d.id=2);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=8) 
+(SELECT REF(d) FROM item_table d WHERE d.id=5);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=8) 
+(SELECT REF(d) FROM item_table d WHERE d.id=1);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=8) 
+(SELECT REF(d) FROM item_table d WHERE d.id=3);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=8) 
+(SELECT REF(d) FROM item_table d WHERE d.id=9);
+-- ITEM 9
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=9) 
+(SELECT REF(d) FROM item_table d WHERE d.id=1);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=9) 
+(SELECT REF(d) FROM item_table d WHERE d.id=7);
+INSERT INTO table(SELECT s.related_items FROM item_table s WHERE s.id=9) 
+(SELECT REF(d) FROM item_table d WHERE d.id=5);
 
 
 -- CLIENT
-INSERT INTO client_table VALUES (1, 'clarita12', '2016-12-03 23:55:00', '2017-04-15 12:25:00', 13, DOWNLOADED_ITEM_TAB_T(DOWNLOADED_ITEM_T()))
+INSERT INTO client_table VALUES (
+	1,
+	'clarita12',
+	'2016-12-03 23:55:00',
+	'2017-04-15 12:25:00',
+	13,
+	DOWNLOADED_ITEM_TAB_T(DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=5), '2017-02-10 09:50:00'),
+						  DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=8), '2017-01-20 19:45:00'),
+						  DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=1), '2017-05-02 23:55:00')),
+	(SELECT REF(p) FROM country_table p WHERE p.id=3)
+);
+INSERT INTO client_table VALUES (
+	2,
+	'sialoquent74',
+	'2016-09-16 14:48:00',
+	'2017-04-19 10:39:00',
+	4,
+	DOWNLOADED_ITEM_TAB_T(DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=3), '2017-02-18 14:20:00'),
+						  DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=7), '2017-01-28 12:25:00')),
+	(SELECT REF(p) FROM country_table p WHERE p.id=8)
+);
+INSERT INTO client_table VALUES (
+	3,
+	'lugubrious46',
+	'2016-08-31 06:37:00',
+	'2017-04-12 19:28:00',
+	9,
+	DOWNLOADED_ITEM_TAB_T(DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=1), '2017-05-03 10:35:00'),
+						  DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=6), '2017-02-04 08:35:00'),
+						  DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=3), '2017-02-19 14:20:00')),
+	(SELECT REF(p) FROM country_table p WHERE p.id=6)
+);
+INSERT INTO client_table VALUES (
+	4,
+	'filibuster89',
+	'2016-11-12 23:11:00',
+	'2017-03-09 17:05:00',
+	14,
+	DOWNLOADED_ITEM_TAB_T(DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=4), '2017-02-12 17:15:00'),
+						  DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=9), '2017-01-04 21:05:00')),
+	(SELECT REF(p) FROM country_table p WHERE p.id=4)
+);
+INSERT INTO client_table VALUES (
+	5,
+	'ranivorous69',
+	'2016-03-05 21:58:00',
+	'2017-04-20 15:05:00',
+	19,
+	DOWNLOADED_ITEM_TAB_T(DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=3), '2017-02-20 14:20:00'),
+						  DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=7), '2017-01-29 12:25:00'),
+						  DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=5), '2017-02-11 09:50:00')),
+	(SELECT REF(p) FROM country_table p WHERE p.id=1)
+);
+INSERT INTO client_table VALUES (
+	6,
+	'nambypamby14',
+	'2016-05-19 18:29:00',
+	'2017-04-25 11:43:00',
+	3,
+	DOWNLOADED_ITEM_TAB_T(DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=6), '2017-02-05 08:35:00'),
+						  DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=2), '2017-04-27 20:30:00')),
+	(SELECT REF(p) FROM country_table p WHERE p.id=9)
+);
+INSERT INTO client_table VALUES (
+	7,
+	'troglodyte36',
+	'2016-11-17 18:47:00',
+	'2017-03-10 09:18:00',
+	7,
+	DOWNLOADED_ITEM_TAB_T(DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=5), '2017-02-12 09:50:00'),
+						  DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=2), '2017-04-28 20:30:00'),
+						  DOWNLOADED_ITEM_T((SELECT REF(d) FROM item_table d WHERE d.id=8), '2017-01-21 19:45:00')),
+	(SELECT REF(p) FROM country_table p WHERE p.id=8)
+);
