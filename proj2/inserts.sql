@@ -78,3 +78,112 @@ INSERT INTO video_table VALUES (7, '2017-01-28 12:25:00', 'Woman writting', 207,
 INSERT INTO video_table VALUES (8, '2017-01-19 19:45:00', 'People eating', 731, httpuritype.createuri('http://www.sitedenoticias.com/videos/people_eating.mkv'), (SELECT REF(p) FROM journalist_table p WHERE id=5), (SELECT REF(p) FROM place_table p WHERE id=5));
 INSERT INTO video_table VALUES (9, '2017-01-03 21:05:00', 'Enya singing', 239, httpuritype.createuri('http://www.sitedenoticias.com/videos/enya_singing.mkv'), (SELECT REF(p) FROM journalist_table p WHERE id=9), (SELECT REF(p) FROM place_table p WHERE id=4));
 
+
+-- ITEM
+INSERT INTO item_table VALUES (
+	1,
+	'2017-05-03 23:55:00',
+	'Trump Says the Government Needs a "Good Shutdown"',
+	'President Trump said on Tuesday that the United States needed "a good shutdown" this fall to force a partisan confrontation over federal spending, and suggested that he might move to reverse longstanding Senate rules that effectively require a supermajority to approve most major pieces of legislation.',
+	ITEM_REF_TAB_T(),
+	(SELECT REF(p) FROM section_table p WHERE id=2),
+	IMAGE_REF_TAB_T((select ref(d) from image_table d where d.id=4), (select ref(d) from image_table d where d.id=6)),
+	VIDEO_REF_TAB_T((select ref(d) from video_table d where d.id=2)),
+	JOURNALIST_ROLE_TAB_T(JOURNALIST_ROLE_T((select ref(d) from journalist_table d where d.id=3), ROLE_T(1, 'Main Reporter')))
+);
+INSERT INTO item_table VALUES (
+	2,
+	'2017-04-26 20:30:00',
+	'Majority of Mélenchon supporters will not back Emmanuel Macron',
+	'Poll suggests 65% of those who backed hard-left candidate will not vote for centrist fighting Marine Le Pen for French presidency',
+	ITEM_REF_TAB_T(),
+	(SELECT REF(p) FROM section_table p WHERE id=1),
+	IMAGE_REF_TAB_T((select ref(d) from image_table d where d.id=7)),
+	VIDEO_REF_TAB_T((select ref(d) from video_table d where d.id=4), (select ref(d) from video_table d where d.id=6)),
+	JOURNALIST_ROLE_TAB_T(JOURNALIST_ROLE_T((select ref(d) from journalist_table d where d.id=6), ROLE_T(2, 'Editor')), JOURNALIST_ROLE_T((select ref(d) from journalist_table d where d.id=7), ROLE_T(3, 'Columnist')))
+);
+INSERT INTO item_table VALUES (
+	3,
+	'2017-02-18 14:20:00',
+	'Merkel presses Putin over anti-gay purge in Chechnya',
+	'German chancellor raises reports of torture and persecution of gay men during joint press conference with Russian president',
+	ITEM_REF_TAB_T(),
+	(SELECT REF(p) FROM section_table p WHERE id=4),
+	IMAGE_REF_TAB_T((select ref(d) from image_table d where d.id=1), (select ref(d) from image_table d where d.id=5)),
+	VIDEO_REF_TAB_T((select ref(d) from video_table d where d.id=9), (select ref(d) from video_table d where d.id=4)),
+	JOURNALIST_ROLE_TAB_T(JOURNALIST_ROLE_T((select ref(d) from journalist_table d where d.id=6), ROLE_T(2, 'Editor')))
+);
+INSERT INTO item_table VALUES (
+	4,
+	'2017-02-11 17:15:00',
+	'"Exercise pill" could deliver benefits of fitness in tablet form',
+	'Drug could transform lives of those who are unable to exercise because of obesity or serious physical disability, mouse study suggests',
+	ITEM_REF_TAB_T(),
+	(SELECT REF(p) FROM section_table p WHERE id=5),
+	IMAGE_REF_TAB_T(),
+	VIDEO_REF_TAB_T(),
+	JOURNALIST_ROLE_TAB_T()
+);
+INSERT INTO item_table VALUES (
+	5,
+	'2017-02-09 09:50:00',
+	'FBI translator married Isis recruiter she was meant to be investigating',
+	'Daniela Greene moved to Syria to be with her jihadi groom, a former German rapper, before realising she was involved "way over her head"',
+	ITEM_REF_TAB_T(),
+	(SELECT REF(p) FROM section_table p WHERE id=6),
+	IMAGE_REF_TAB_T(),
+	VIDEO_REF_TAB_T(),
+	JOURNALIST_ROLE_TAB_T()
+);
+INSERT INTO item_table VALUES (
+	6,
+	'2017-02-03 08:35:00',
+	'May: Juncker will find me "bloody difficult woman" in Brexit talks',
+	'Comment comes as cabinet source brands decision to leak details of PM’s dinner with European commission chief a "miscalculation"',
+	ITEM_REF_TAB_T(),
+	(SELECT REF(p) FROM section_table p WHERE id=7),
+	IMAGE_REF_TAB_T(),
+	VIDEO_REF_TAB_T(),
+	JOURNALIST_ROLE_TAB_T()
+);
+INSERT INTO item_table VALUES (
+	7,
+	'2017-01-28 12:25:00',
+	'Jaber Abdullah: how I set up a refugee football team in Barnsley',
+	'The Sudanese asylum seeker has created a 50-strong squad to help men stuck in immigration limbo in a town that has faced anti-immigration marches',
+	ITEM_REF_TAB_T(),
+	(SELECT REF(p) FROM section_table p WHERE id=9),
+	IMAGE_REF_TAB_T(),
+	VIDEO_REF_TAB_T(),
+	JOURNALIST_ROLE_TAB_T()
+);
+INSERT INTO item_table VALUES (
+	8,
+	'2017-01-19 19:45:00',
+	'Erdoğan rejoins Turkey’s ruling party in wake of referendum on new powers',
+	'President returns to Justice and Development party a fortnight after voters narrowly approved constitutional amendments',
+	ITEM_REF_TAB_T(),
+	(SELECT REF(p) FROM section_table p WHERE id=8),
+	IMAGE_REF_TAB_T(),
+	VIDEO_REF_TAB_T(),
+	JOURNALIST_ROLE_TAB_T()
+);
+INSERT INTO item_table VALUES (
+	9,
+	'2017-01-03 21:05:00',
+	'"Oldest human" dies in Indonesia aged 146',
+	'Indonesia says deceased man was born in December 1870, although his age was never verified',
+	ITEM_REF_TAB_T(),
+	(SELECT REF(p) FROM section_table p WHERE id=3),
+	IMAGE_REF_TAB_T(),
+	VIDEO_REF_TAB_T(),
+	JOURNALIST_ROLE_TAB_T()
+);
+
+
+insert into table(select s.images from item_table s where s.id=1) 
+(select ref(d) from image_table d where d.id=6);
+
+
+-- CLIENT
+INSERT INTO client_table VALUES (1, 'clarita12', '2016-12-03 23:55:00', '2017-04-15 12:25:00', 13, DOWNLOADED_ITEM_TAB_T(DOWNLOADED_ITEM_T()))
