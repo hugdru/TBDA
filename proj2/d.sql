@@ -1,4 +1,3 @@
--- d)
 SELECT value(p).title as image_title
 FROM TABLE (SELECT v.downloaded_item.images
             FROM TABLE (SELECT c.downloaded_items
