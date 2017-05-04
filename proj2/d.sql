@@ -1,4 +1,4 @@
---------------------- d)
+-- d)
 SELECT value(p).title
 FROM table(SELECT v.downloaded_item.images
            FROM table(select c.downloaded_items from client_table c where c.username='lugubrious46') v
