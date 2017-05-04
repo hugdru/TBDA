@@ -10,9 +10,9 @@
 \usepackage{array}
 \usepackage{tabulary}
 \usepackage{float}
+\usepackage{csvsimple}
 \lstset{
  breaklines=true,
- breakatwhitespace=true,
  tabsize=4,
  inputencoding=utf8/latin1
 }
@@ -59,13 +59,18 @@ Este diagrama descreve a estrutura high-level do problema. Foram acrescentadas r
 \lstinputlisting[language=SQL]{../schema.sql}
 
 \section{Prepare an instance for the DB}
-\lstinputlisting[language=SQL]{../inserts.sql}
+%\lstinputlisting[language=SQL]{../inserts.sql}
 
 \section{Add an ordering method for the news base on descending date and, for each day, on the of previous downloads, also descending}
+\lstinputlisting[language=SQL]{../c.sql}
+\begin{center}\csvautotabular[respect all]{../c.csv}\end{center}
 
 \section{Prepare a query that, given the reader and a day presents the titles of the photos he has seen}
 \lstinputlisting[language=SQL]{../d.sql}
+\begin{center}\csvautotabular[respect all]{../d.csv}\end{center}
 
 \section{List the production of each journalist, including statistics}
+\lstinputlisting[language=SQL]{../e.sql}
+\begin{center}\csvautotabular[respect all]{../e.csv}\end{center}
 
 \end{document}
