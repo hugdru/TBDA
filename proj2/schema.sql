@@ -1,4 +1,4 @@
---------------------------------------------------------- ITEM
+-- ITEM --
 CREATE TYPE ITEM_T AS OBJECT (
   id             INTEGER,
   published_date TIMESTAMP,
@@ -10,7 +10,7 @@ CREATE TYPE ITEM_REF_TAB_T AS TABLE OF REF ITEM_T;
 
 ALTER TYPE ITEM_T ADD ATTRIBUTE (related_items ITEM_REF_TAB_T ) CASCADE;
 
---------------------------------------------------------- SECTION
+-- SECTION --
 CREATE TYPE SECTION_T AS OBJECT (
   id   INTEGER,
   name NVARCHAR2(200)
@@ -18,7 +18,7 @@ CREATE TYPE SECTION_T AS OBJECT (
 
 ALTER TYPE ITEM_T ADD ATTRIBUTE (section REF SECTION_T ) CASCADE;
 
---------------------------------------------------------- IMAGE
+-- IMAGE --
 CREATE TYPE IMAGE_T AS OBJECT (
   id            INTEGER,
   produced_date TIMESTAMP,
@@ -31,16 +31,16 @@ CREATE TYPE IMAGE_REF_TAB_T AS TABLE OF REF IMAGE_T;
 
 ALTER TYPE ITEM_T ADD ATTRIBUTE (images IMAGE_REF_TAB_T ) CASCADE;
 
---------------------------------------------------------- CARTOON
+-- CARTOON --
 CREATE TYPE CARTOON_T UNDER IMAGE_T();
 
---------------------------------------------------------- INFOGRAM
+-- INFOGRAM --
 CREATE TYPE INFOGRAM_T UNDER IMAGE_T();
 
---------------------------------------------------------- PHOTO
+-- PHOTO --
 CREATE TYPE PHOTO_T UNDER IMAGE_T();
 
---------------------------------------------------------- VIDEO
+-- VIDEO --
 CREATE TYPE VIDEO_T AS OBJECT (
   id            INTEGER,
   recorded_date TIMESTAMP,
@@ -53,7 +53,7 @@ CREATE TYPE VIDEO_REF_TAB_T AS TABLE OF REF VIDEO_T;
 
 ALTER TYPE ITEM_T ADD ATTRIBUTE (videos VIDEO_REF_TAB_T ) CASCADE;
 
---------------------------------------------------------- JOURNALIST
+-- JOURNALIST --
 CREATE TYPE JOURNALIST_T AS OBJECT (
   id              INTEGER,
   name            NVARCHAR2(250),
@@ -63,7 +63,7 @@ CREATE TYPE JOURNALIST_T AS OBJECT (
 ALTER TYPE IMAGE_T ADD ATTRIBUTE (journalist REF JOURNALIST_T ) CASCADE;
 ALTER TYPE VIDEO_T ADD ATTRIBUTE (journalist REF JOURNALIST_T ) CASCADE;
 
---------------------------------------------------------- PLACE
+-- PLACE --
 CREATE TYPE PLACE_T AS OBJECT (
   id   INTEGER,
   city NVARCHAR2(300),
@@ -73,7 +73,7 @@ CREATE TYPE PLACE_T AS OBJECT (
 ALTER TYPE VIDEO_T ADD ATTRIBUTE (place REF PLACE_T ) CASCADE;
 ALTER TYPE PHOTO_T ADD ATTRIBUTE (place REF PLACE_T ) CASCADE;
 
---------------------------------------------------------- CATEGORY
+-- CATEGORY --
 CREATE TYPE CATEGORY_T AS OBJECT (
   id   INTEGER,
   name NVARCHAR2(200)
@@ -81,7 +81,7 @@ CREATE TYPE CATEGORY_T AS OBJECT (
 
 ALTER TYPE JOURNALIST_T ADD ATTRIBUTE (category REF CATEGORY_T ) CASCADE;
 
---------------------------------------------------------- ROLE
+-- ROLE --
 CREATE TYPE ROLE_T AS OBJECT (
   id   INTEGER,
   name NVARCHAR2(300)
@@ -96,7 +96,7 @@ CREATE TYPE JOURNALIST_ROLE_TAB_T AS TABLE OF JOURNALIST_ROLE_T;
 
 ALTER TYPE ITEM_T ADD ATTRIBUTE (journalist_role_set JOURNALIST_ROLE_TAB_T ) CASCADE;
 
---------------------------------------------------------- CLIENT
+-- CLIENT --
 CREATE TYPE CLIENT_T AS OBJECT (
   id           INTEGER,
   username     NVARCHAR2(100),
@@ -105,7 +105,7 @@ CREATE TYPE CLIENT_T AS OBJECT (
   item_counter INTEGER
 );
 
---------------------------------------------------------- DOWNLOADED_ITEM
+-- DOWNLOADED_ITEM --
 CREATE TYPE DOWNLOADED_ITEM_T AS OBJECT (
   downloaded_item REF ITEM_T,
   download_date   TIMESTAMP
@@ -115,7 +115,7 @@ CREATE TYPE DOWNLOADED_ITEM_TAB_T AS TABLE OF DOWNLOADED_ITEM_T;
 
 ALTER TYPE CLIENT_T ADD ATTRIBUTE (downloaded_items DOWNLOADED_ITEM_TAB_T ) CASCADE;
 
---------------------------------------------------------- COUNTRY
+-- COUNTRY --
 CREATE TYPE COUNTRY_T AS OBJECT (
   id   INTEGER,
   name NVARCHAR2(100)
@@ -125,7 +125,7 @@ ALTER TYPE PLACE_T ADD ATTRIBUTE (country REF COUNTRY_T ) CASCADE;
 ALTER TYPE JOURNALIST_T ADD ATTRIBUTE (country REF COUNTRY_T ) CASCADE;
 ALTER TYPE CLIENT_T ADD ATTRIBUTE (country REF COUNTRY_T ) CASCADE;
 
------------------------------------------------ TABLES -----------------------------------------------
+----- TABLES -----
 CREATE TABLE item_table OF ITEM_T
   NESTED TABLE related_items STORE AS item_related_items_nt
   NESTED TABLE images STORE AS item_images_nt

@@ -1,0 +1,19 @@
+item(id, section_id -> section(id), published_date, title, text)
+item_image(item_id -> item(id), image_id -> image(id))
+item_video(item_id -> item(id), video_id -> video(id))
+item_client(item_id -> item(id), client_id -> client(id), download_date)
+related_item(item_id -> item(id), related_item_id -> item(id))
+section(id, name)
+
+image(id, journalist_id -> journalist(id), produced_date, title, file_size, url, place_id -> place(id), image_type_id -> image_type(id))
+image_type(id, name)
+video(id, journalist_id -> journalist(id), place_id -> place(id), recorded_date, title, duration, url)
+
+role(id, name)
+category(id, name)
+journalist(id, category_id -> category(id), country_id -> country(id), professional_id, name)
+item_journalist_role(item_id -> item(id), journalist_id -> journalist(id), role_id -> role(id))
+
+client(id, country_id -> country(id), username, joining_date, paid_date, item_counter)
+country(id, name)
+place(id, country_id -> country(id), city, name)
