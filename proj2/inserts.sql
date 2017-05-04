@@ -43,7 +43,7 @@ INSERT INTO journalist_table VALUES (3, 'Hugo Fernandes Almeida', '5820644018537
 INSERT INTO journalist_table VALUES (4, 'Guilherme Ribeiro Dias', '401358289582293', (SELECT REF(p) FROM category_table p WHERE id=2), (SELECT REF(p) FROM country_table p WHERE id=6));
 INSERT INTO journalist_table VALUES (5, 'Filipe Martins Rodrigues', '382387596342312', (SELECT REF(p) FROM category_table p WHERE id=4), (SELECT REF(p) FROM country_table p WHERE id=1));
 INSERT INTO journalist_table VALUES (6, 'Igor Sousa Cunha', '295062196039212', (SELECT REF(p) FROM category_table p WHERE id=1), (SELECT REF(p) FROM country_table p WHERE id=4));
-INSERT INTO journalist_table VALUES (7, 'Margarida PINTO Barbosa', '045872348942372', (SELECT REF(p) FROM category_table p WHERE id=3), (SELECT REF(p) FROM country_table p WHERE id=5));
+INSERT INTO journalist_table VALUES (7, 'Margarida Pinto Barbosa', '045872348942372', (SELECT REF(p) FROM category_table p WHERE id=3), (SELECT REF(p) FROM country_table p WHERE id=5));
 INSERT INTO journalist_table VALUES (8, 'Rodrigo Araújo Gonçalves', '560480293484723', (SELECT REF(p) FROM category_table p WHERE id=3), (SELECT REF(p) FROM country_table p WHERE id=9));
 INSERT INTO journalist_table VALUES (9, 'Daniela Lima Costa', '593295810321850', (SELECT REF(p) FROM category_table p WHERE id=5), (SELECT REF(p) FROM country_table p WHERE id=2));
 
