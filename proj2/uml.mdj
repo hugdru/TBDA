@@ -10168,7 +10168,7 @@
 									"containerChangeable": false,
 									"containerExtending": false,
 									"left": 1143,
-									"top": 921,
+									"top": 929,
 									"width": 0,
 									"height": 13,
 									"autoResize": false,
@@ -10202,7 +10202,7 @@
 									"containerChangeable": false,
 									"containerExtending": false,
 									"left": 1143,
-									"top": 936,
+									"top": 944,
 									"width": 0,
 									"height": 13,
 									"autoResize": false,
@@ -10236,7 +10236,7 @@
 									"containerChangeable": false,
 									"containerExtending": false,
 									"left": 1144,
-									"top": 891,
+									"top": 899,
 									"width": 0,
 									"height": 13,
 									"autoResize": false,
@@ -10522,7 +10522,7 @@
 								"$ref": "AAAAAAFboIyMiOEjwzw="
 							},
 							"lineStyle": 0,
-							"points": "1014:720;1144:720;1144:912;464:912;464:845",
+							"points": "1014:720;1144:720;1144:920;464:920;464:845",
 							"stereotypeDisplay": "label",
 							"showVisibility": true,
 							"showProperty": true,
@@ -14495,35 +14495,6 @@
 				},
 				{
 					"_type": "UMLClass",
-					"_id": "AAAAAAFboMWDKQdMNso=",
-					"_parent": {
-						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
-					},
-					"name": "...",
-					"ownedElements": [
-						{
-							"_type": "UMLGeneralization",
-							"_id": "AAAAAAFboMYpFwmKRr4=",
-							"_parent": {
-								"$ref": "AAAAAAFboMWDKQdMNso="
-							},
-							"source": {
-								"$ref": "AAAAAAFboMWDKQdMNso="
-							},
-							"target": {
-								"$ref": "AAAAAAFboIAmX99wyv0="
-							},
-							"visibility": "public"
-						}
-					],
-					"visibility": "public",
-					"isAbstract": false,
-					"isFinalSpecialization": false,
-					"isLeaf": false,
-					"isActive": false
-				},
-				{
-					"_type": "UMLClass",
 					"_id": "AAAAAAFboNcOolVUNw8=",
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
@@ -14740,6 +14711,19 @@
 							"isID": false
 						}
 					],
+					"isAbstract": false,
+					"isFinalSpecialization": false,
+					"isLeaf": false,
+					"isActive": false
+				},
+				{
+					"_type": "UMLClass",
+					"_id": "AAAAAAFb1aRvaaBUMw4=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "Class1",
+					"visibility": "public",
 					"isAbstract": false,
 					"isFinalSpecialization": false,
 					"isLeaf": false,
