@@ -11,10 +11,14 @@
 \usepackage{tabulary}
 \usepackage{float}
 \usepackage{csvsimple}
+\usepackage{changepage}
+\usepackage[letterpaper,margin=1in]{geometry}
 \lstset{
  breaklines=true,
  tabsize=4,
- inputencoding=utf8/latin1
+ inputencoding=utf8/latin1,
+ columns=flexible,
+ keepspaces=true
 }
 
 \begin{document}
@@ -28,8 +32,8 @@
 \thispagestyle{empty} % titlepage must not be numbered
 \end{titlepage}
 
-\newpage
-\tableofcontents
+%\newpage
+%\tableofcontents
 \newpage
 
 \section{Design an object-relational data model for this situation, exploiting the SQL3 extensions}
@@ -39,7 +43,7 @@ Este diagrama descreve a estrutura high-level do problema. Foram acrescentadas r
 
 \begin{figure}[H]
 	\centering
-    	\includegraphics[width=1.0\textwidth]{../relationalClassDiagram.png}
+		\noindent\makebox[\textwidth]{\includegraphics[width=1.2\textwidth]{../relationalClassDiagram.png}}
     \caption{Uml Class Diagram}
 \end{figure}
 
@@ -47,11 +51,10 @@ Este diagrama descreve a estrutura high-level do problema. Foram acrescentadas r
 \lstinputlisting{../relational_model.txt}
 
 \subsection{Modelo Objeto-Relacional}
-
 \subsubsection{Esquema}
 \begin{figure}[H]
 	\centering
-    	\includegraphics[width=1.0\textwidth]{../objectRelationalModel.jpg}
+    	\noindent\makebox[\textwidth]{\includegraphics[width=1.2\textwidth]{../objectRelationalModel.jpg}}
     \caption{Uml Class Diagram}
 \end{figure}
 
@@ -59,18 +62,32 @@ Este diagrama descreve a estrutura high-level do problema. Foram acrescentadas r
 \lstinputlisting[language=SQL]{../schema.sql}
 
 \section{Prepare an instance for the DB}
-%\lstinputlisting[language=SQL]{../inserts.sql}
+\lstinputlisting[language=SQL]{../inserts.sql}
 
 \section{Add an ordering method for the news base on descending date and, for each day, on the of previous downloads, also descending}
-\lstinputlisting[language=SQL]{../c.sql}
-\begin{center}\csvautotabular[respect all]{../c.csv}\end{center}
+%\lstinputlisting[language=SQL]{../c.sql}
+%\begin{center}\noindent\makebox[\textwidth]{\csvautotabular[respect all]{../c.csv}}\end{center}
 
 \section{Prepare a query that, given the reader and a day presents the titles of the photos he has seen}
 \lstinputlisting[language=SQL]{../d.sql}
-\begin{center}\csvautotabular[respect all]{../d.csv}\end{center}
+\begin{center}\noindent\makebox[\textwidth]{\csvautotabular[respect all]{../d.csv}}\end{center}
 
 \section{List the production of each journalist, including statistics}
-\lstinputlisting[language=SQL]{../e.sql}
-\begin{center}\csvautotabular[respect all]{../e.csv}\end{center}
+\lstinputlisting[language=SQL]{../e-views.sql}
+
+\lstinputlisting[language=SQL]{../e1.sql}
+\begin{center}\noindent\makebox[\textwidth]{\csvautotabular[respect all]{../e1.csv}}\end{center}
+
+\lstinputlisting[language=SQL]{../e2.sql}
+\begin{center}\noindent\makebox[\textwidth]{\csvautotabular[respect all]{../e2.csv}}\end{center}
+
+\lstinputlisting[language=SQL]{../e3.sql}
+\begin{center}\noindent\makebox[\textwidth]{\csvautotabular[respect all]{../e3.csv}}\end{center}
+
+\lstinputlisting[language=SQL]{../e4.sql}
+\begin{center}\noindent\makebox[\textwidth]{\csvautotabular[respect all]{../e4.csv}}\end{center}
+
+\lstinputlisting[language=SQL]{../e5.sql}
+\begin{center}\noindent\makebox[\textwidth]{\csvautotabular[respect all]{../e5.csv}}\end{center}
 
 \end{document}
