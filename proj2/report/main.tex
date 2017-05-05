@@ -28,6 +28,7 @@
 \\[1cm]\includegraphics{logo.png}\\[1cm] \large Tecnologias de Bases de Dados\\[0.25cm] \small $4^o$ ano $2^o$ semestre\\[0.05cm]Mestrado Integrado em Engenharia Informática e Computação\\[1.7cm]}}
 
 \author{Hugo Drumond \\ Rui Gonçalves \and 201102900\\ 201201775 \and up201102900@fe.up.pt \\ up201201775@fe.up.pt \\[1cm]}
+\date{}
 \maketitle
 \thispagestyle{empty} % titlepage must not be numbered
 \end{titlepage}
@@ -64,9 +65,8 @@ Este diagrama descreve a estrutura high-level do problema. Foram acrescentadas r
 \section{Prepare an instance for the DB}
 \lstinputlisting[language=SQL]{../inserts.sql}
 
-\section{Add an ordering method for the news base on descending date and, for each day, on the of previous downloads, also descending}
-%\lstinputlisting[language=SQL]{../c.sql}
-%\begin{center}\noindent\makebox[\textwidth]{\csvautotabular[respect all]{../c.csv}}\end{center}
+\section{Add an ordering method for the news base on descending date and, for each day, on the number of previous downloads, also descending}
+\lstinputlisting[language=SQL]{../c.sql}
 
 \section{Prepare a query that, given the reader and a day presents the titles of the photos he has seen}
 \lstinputlisting[language=SQL]{../d.sql}
