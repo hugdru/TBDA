@@ -93,6 +93,3 @@ SELECT xmltype(eleicao_t(
   (SELECT CAST(COLLECT(partido_t(p.sigla, p.designacao)) AS partido_table) FROM partidos p)
 ))
 FROM dual;
-
-SELECT p.sigla, p.designacao
-FROM partidos p;
