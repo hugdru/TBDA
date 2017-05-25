@@ -61,7 +61,7 @@ CREATE TYPE eleicao_t AS OBJECT (
   partidos partido_table
 );
 
-SELECT xmltype(eleicao_t(
+SELECT XMLTYPE(eleicao_t(
   (SELECT CAST(COLLECT(distrito_t(
     d.codigo, d.nome, d.regiao,
     CAST(MULTISET(
