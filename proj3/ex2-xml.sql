@@ -55,6 +55,10 @@ CREATE OR REPLACE PACKAGE BODY eleicao_pkg IS
       INTO xml_out
       FROM dual;
 
+      -- http://www.oraclefrontovik.com/2012/12/some-different-ways-to-perform-xslt-from-plsql/
+
+      --
+
       -- https://ronaldsoracle.wordpress.com/2015/04/30/printing-a-large-xmltype-value-using-dbms_output/
       -- Equivalent to set serveroutput on size unlimited
       dbms_output.enable(null);
