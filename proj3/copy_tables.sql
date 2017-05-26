@@ -31,5 +31,4 @@ CREATE TABLE votacoes AS (SELECT * FROM gtd7.votacoes);
 ALTER TABLE votacoes
   ADD CONSTRAINT votacoes_freguesia_fk FOREIGN KEY (freguesia) REFERENCES freguesias(codigo)
   ADD CONSTRAINT votacoes_partido_fk FOREIGN KEY (partido) REFERENCES partidos(sigla)
-  ADD CONSTRAINT votacoes_freguesia_partido_pk
-PRIMARY KEY (freguesia, partido);
+  ADD CONSTRAINT votacoes_freguesia_partido_pk PRIMARY KEY (freguesia, partido);

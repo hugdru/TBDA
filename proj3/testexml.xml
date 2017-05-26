@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+  <distritos>
+    <distrito_t>
+      <codigo>953</codigo>
+      <nome>Aveiro</nome>
+      <concelhos>
+        <concelho_t>
+          <codigo>421</codigo>
+          <nome>Espinho</nome>
+        </concelho_t>
+        <concelho_t>
+          <codigo>101</codigo>
+          <nome>Agueda</nome>
+        </concelho_t>
+      </concelhos>
+    </distrito_t>
+    <distrito_t>
+      <codigo>260</codigo>
+      <nome>Porto</nome>
+      <concelhos>
+        <concelho_t>
+          <codigo>431</codigo>
+          <nome>Paredes</nome>
+        </concelho_t>
+        <concelho_t>
+          <codigo>213</codigo>
+          <nome>Penafiel</nome>
+        </concelho_t>
+      </concelhos>
+    </distrito_t>
+    <distrito_t>
+      <codigo>309</codigo>
+      <nome>Faro</nome>
+      <concelhos>
+        <concelho_t>
+          <codigo>231</codigo>
+          <nome>Olhao</nome>
+        </concelho_t>
+        <concelho_t>
+          <codigo>502</codigo>
+          <nome>Portimao</nome>
+        </concelho_t>
+      </concelhos>
+    </distrito_t>
+  </distritos>
+  <partidos>
+    <partido_t>
+      <title>PS</title>
+      <designacao>Partido Socialista</designacao>
+    </partido_t>
+    <partido_t>
+      <title>PSN</title>
+      <designacao>Partido Solidariedade Nacional</designacao>
+    </partido_t>
+    <partido_t>
+      <title>PPM</title>
+      <designacao>Partido Popular Monarquico</designacao>
+    </partido_t>
+    <partido_t>
+      <title>PPDPSD</title>
+      <designacao>Partido Social Democrata</designacao>
+    </partido_t>
+  </partidos>
+</catalog>
+
