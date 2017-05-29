@@ -2,9 +2,12 @@
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template match="/"><xsl:apply-templates select="ELEICAO_T/PARTIDOS"/>
-<xsl:apply-templates select="ELEICAO_T/DISTRITOS"/>;</xsl:template>
+<xsl:apply-templates select="ELEICAO_T/DISTRITOS"/></xsl:template>
 
-<xsl:template match="PARTIDO_T">
+<xsl:template match="PARTIDO_T[position() = 1]">db.partidos.insert({<xsl:apply-templates select="SIGLA"/><xsl:apply-templates select="DESIGNACAO"/>});
+</xsl:template>
+
+<xsl:template match="PARTIDO_T[position() != 1]">
 db.partidos.insert({<xsl:apply-templates select="SIGLA"/><xsl:apply-templates select="DESIGNACAO"/>});
 </xsl:template>
 
@@ -12,9 +15,12 @@ db.partidos.insert({<xsl:apply-templates select="SIGLA"/><xsl:apply-templates se
 
 <xsl:template match="PARTIDO_T/DESIGNACAO">"designacao":"<xsl:value-of select="."/>"</xsl:template>
 
-<xsl:template match="DISTRITO_T">
+<xsl:template match="DISTRITO_T[position() != last()]">
 db.distritos.insert({<xsl:apply-templates select="CODIGO"/><xsl:apply-templates select="NOME"/><xsl:apply-templates select="REGIAO"/>"concelhos":[<xsl:apply-templates select="CONCELHOS"/>],<xsl:apply-templates select="PARTICIPACOES"/>,"listas":[<xsl:apply-templates select="LISTAS"/>]});
 </xsl:template>
+
+<xsl:template match="DISTRITO_T[last()]">
+db.distritos.insert({<xsl:apply-templates select="CODIGO"/><xsl:apply-templates select="NOME"/><xsl:apply-templates select="REGIAO"/>"concelhos":[<xsl:apply-templates select="CONCELHOS"/>],<xsl:apply-templates select="PARTICIPACOES"/>,"listas":[<xsl:apply-templates select="LISTAS"/>]});</xsl:template>
 
 <xsl:template match="DISTRITO_T/CODIGO">"codigo":<xsl:value-of select="."/>,</xsl:template>
 
