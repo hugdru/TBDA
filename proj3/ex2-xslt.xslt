@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<xsl:template match="/">db.partidos.insertMany([<xsl:apply-templates select="ELEICAO_T/PARTIDOS"/>]);
-db.distritos.insertMany([<xsl:apply-templates select="ELEICAO_T/DISTRITOS"/>]);</xsl:template>
+<xsl:template match="/"><xsl:apply-templates select="ELEICAO_T/PARTIDOS"/>
+<xsl:apply-templates select="ELEICAO_T/DISTRITOS"/>;</xsl:template>
 
-<xsl:template match="PARTIDO_T[position() != last()]">{<xsl:apply-templates select="SIGLA"/><xsl:apply-templates select="DESIGNACAO"/>},</xsl:template>
-
-<xsl:template match="PARTIDO_T[last()]">{<xsl:apply-templates select="SIGLA"/><xsl:apply-templates select="DESIGNACAO"/>}</xsl:template>
+<xsl:template match="PARTIDO_T">
+db.partidos.insert({<xsl:apply-templates select="SIGLA"/><xsl:apply-templates select="DESIGNACAO"/>});
+</xsl:template>
 
 <xsl:template match="PARTIDO_T/SIGLA">"sigla":"<xsl:value-of select="."/>",</xsl:template>
 
 <xsl:template match="PARTIDO_T/DESIGNACAO">"designacao":"<xsl:value-of select="."/>"</xsl:template>
 
-<xsl:template match="DISTRITO_T[position() != last()]">{<xsl:apply-templates select="CODIGO"/><xsl:apply-templates select="NOME"/><xsl:apply-templates select="REGIAO"/>"concelhos":[<xsl:apply-templates select="CONCELHOS"/>],<xsl:apply-templates select="PARTICIPACOES"/>,"listas":[<xsl:apply-templates select="LISTAS"/>]},</xsl:template>
-
-<xsl:template match="DISTRITO_T[last()]">{<xsl:apply-templates select="CODIGO"/><xsl:apply-templates select="NOME"/><xsl:apply-templates select="REGIAO"/>"concelhos":[<xsl:apply-templates select="CONCELHOS"/>],<xsl:apply-templates select="PARTICIPACOES"/>,"listas":[<xsl:apply-templates select="LISTAS"/>]}</xsl:template>
+<xsl:template match="DISTRITO_T">
+db.distritos.insert({<xsl:apply-templates select="CODIGO"/><xsl:apply-templates select="NOME"/><xsl:apply-templates select="REGIAO"/>"concelhos":[<xsl:apply-templates select="CONCELHOS"/>],<xsl:apply-templates select="PARTICIPACOES"/>,"listas":[<xsl:apply-templates select="LISTAS"/>]});
+</xsl:template>
 
 <xsl:template match="DISTRITO_T/CODIGO">"codigo":<xsl:value-of select="."/>,</xsl:template>
 
