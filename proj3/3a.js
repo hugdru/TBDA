@@ -19,20 +19,17 @@ db.distritos.aggregate([{
 }]);
 
 // Map-Reduce
-db.distritos.mapReduce(
-    function() {
-        for (var i = 0; i < this.listas.length; i++) {
-            var element = this.listas[i];
-            var key = element.partido;
-            var value = element.mandatos;
-            emit(key, value);
-        }
-    },
-    function(partido, array_partido_mandatos) {
-        return Array.sum(array_partido_mandatos)
-    }, {
-        out: {
-            inline: 1
-        }
+db.distritos.mapReduce(function() {
+    for (var i = 0; i < this.listas.length; i++) {
+        var element = this.listas[i];
+        var key = element.partido;
+        var value = element.mandatos;
+        emit(key, value);
     }
-);
+}, function(partido, array_partido_mandatos) {
+    return Array.sum(array_partido_mandatos)
+}, {
+    out: {
+        inline: 1
+    }
+});
