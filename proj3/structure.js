@@ -1,5 +1,4 @@
 // Estrutura das coleções
-
 distritos = [{
     codigo: int,
     nome: string,
